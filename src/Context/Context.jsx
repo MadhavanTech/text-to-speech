@@ -9,9 +9,9 @@ const Context = ({ children }) => {
 
   const defaultBackendUrl = import.meta.env.DEV
     ? '/api/convert'
-    : 'https://dac-final-50043363970.development.catalystappsail.in/api/convert'
+    : import.meta.env.VITE_API_URL || 'https://dac-final-50043363970.development.catalystappsail.in/api/convert'
 
-  const backendUrl = import.meta.env.VITE_API_URL || defaultBackendUrl
+  const backendUrl = defaultBackendUrl
 
   const base64ToAudioUrl = (base64String) => {
     const cleanString = base64String.startsWith('data:')
