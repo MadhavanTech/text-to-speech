@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../Context/Context'
 
 const Speeker = () => {
-  const { text, audioUrl, savedFilePath, convertTextToSpeech } = useContext(AppContext)
+  const { text, audioUrl, savedFilePath, speechMode, convertTextToSpeech } = useContext(AppContext)
   const audioRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const [volume, setVolume] = useState(0.7)
@@ -73,7 +73,9 @@ const Speeker = () => {
       </div>
 
       <p className='text-sky-200 text-center max-w-md'>
-        Click the button to convert your text to speech
+        {speechMode === 'browser'
+          ? 'Your browser voice is being used for playback, so this works on GitHub Pages without CORS errors.'
+          : 'Click the button to convert your text to speech'}
       </p>
 
       {savedFilePath && (
@@ -85,7 +87,7 @@ const Speeker = () => {
 
       <div className='text-sky-300 text-sm text-center max-w-md bg-sky-900/30 p-3 rounded-lg border border-sky-700'>
         <p className='font-semibold mb-2'>💡 Tip:</p>
-        <p>Use the Volume slider to adjust playback. If audio sounds distorted, try lowering the volume.</p>
+        <p>Use the Volume slider to adjust playback. If your browser does not support speech playback, the app will fall back to the configured backend.</p>
       </div>
     </div>
   )

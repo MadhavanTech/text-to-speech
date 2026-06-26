@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/convert': {
-        target: 'https://dac-final-50043363970.development.catalystappsail.in',
+        target: 'http://localhost:3001',
         changeOrigin: true,
         secure: false,
       },
