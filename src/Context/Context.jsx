@@ -9,7 +9,7 @@ const Context = ({ children }) => {
 
   const defaultBackendUrl = import.meta.env.DEV
     ? '/api/convert'
-    : import.meta.env.VITE_API_URL || 'https://dac-final-50043363970.development.catalystappsail.in/api/convert'
+    : 'https://dac-final-50043363970.development.catalystappsail.in/api/convert'
 
   const backendUrl = defaultBackendUrl
 
