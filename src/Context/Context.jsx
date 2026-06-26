@@ -81,6 +81,7 @@ const Context = ({ children }) => {
         audioObjectUrl = URL.createObjectURL(blob)
       } else {
         const payload = await response.json()
+        console.log('DAC response payload:', payload)
         if (!payload.audioData) throw new Error('No audio data returned')
         audioObjectUrl = base64ToAudioUrl(payload.audioData)
         if (typeof payload.filePath === 'string') {
