@@ -7,6 +7,7 @@ const Context = ({ children }) => {
   const [audioUrl, setAudioUrl] = useState('')
   const [savedFilePath, setSavedFilePath] = useState('')
   const [speechMode, setSpeechMode] = useState('browser')
+  const [statusMessage, setStatusMessage] = useState('Ready to speak')
 
   const backendUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV
     ? '/api/convert'
@@ -41,6 +42,7 @@ const Context = ({ children }) => {
     window.speechSynthesis.speak(utterance)
 
     setSpeechMode('browser')
+    setStatusMessage('Browser speech started')
     setAudioUrl('')
     setSavedFilePath('')
   }
@@ -61,6 +63,7 @@ const Context = ({ children }) => {
         throw new Error('No speech backend is configured for this environment')
       }
 
+      setStatusMessage('Fetching DAC response...')
       const response = await fetch(backendUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -82,6 +85,7 @@ const Context = ({ children }) => {
       } else {
         const payload = await response.json()
         console.log('DAC response payload:', payload)
+        setStatusMessage('DAC response received')
         if (!payload.audioData) throw new Error('No audio data returned')
         audioObjectUrl = base64ToAudioUrl(payload.audioData)
         if (typeof payload.filePath === 'string') {
@@ -93,6 +97,7 @@ const Context = ({ children }) => {
       setAudioUrl(audioObjectUrl)
     } catch (error) {
       console.error(error)
+      setStatusMessage(error.message || 'Failed to get audio from the server')
       alert(error.message || 'Failed to get audio from the server')
     }
   }
@@ -105,6 +110,7 @@ const Context = ({ children }) => {
         audioUrl,
         savedFilePath,
         speechMode,
+        statusMessage,
         convertTextToSpeech
       }}
     >

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../Context/Context'
 
 const Speeker = () => {
-  const { text, audioUrl, savedFilePath, speechMode, convertTextToSpeech } = useContext(AppContext)
+  const { text, audioUrl, savedFilePath, speechMode, statusMessage, convertTextToSpeech } = useContext(AppContext)
   const audioRef = useRef(null)
   const [loading, setLoading] = useState(false)
   const [volume, setVolume] = useState(0.7)
@@ -77,6 +77,11 @@ const Speeker = () => {
           ? 'Your browser voice is being used for playback, so this works on GitHub Pages without CORS errors.'
           : 'Click the button to convert your text to speech'}
       </p>
+
+      <div className='w-full max-w-md rounded-lg border border-sky-700 bg-sky-950/50 px-4 py-3 text-sm text-sky-100'>
+        <p className='font-semibold text-sky-300'>Status</p>
+        <p className='mt-1 break-words'>{statusMessage}</p>
+      </div>
 
       {savedFilePath && (
         <div className='w-full max-w-md text-left text-sky-200 bg-sky-900/40 p-4 rounded-lg border border-sky-700'>
