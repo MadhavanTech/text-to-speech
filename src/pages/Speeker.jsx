@@ -73,9 +73,7 @@ const Speeker = () => {
       </div>
 
       <p className='text-sky-200 text-center max-w-md'>
-        {speechMode === 'browser'
-          ? 'Your browser voice is being used for playback, so this works on GitHub Pages without CORS errors.'
-          : 'Click the button to convert your text to speech'}
+        This app now fetches audio from the DAC backend for playback.
       </p>
 
       <div className='w-full max-w-md rounded-lg border border-sky-700 bg-sky-950/50 px-4 py-3 text-sm text-sky-100'>
@@ -92,7 +90,7 @@ const Speeker = () => {
 
       <div className='text-sky-300 text-sm text-center max-w-md bg-sky-900/30 p-3 rounded-lg border border-sky-700'>
         <p className='font-semibold mb-2'>💡 Tip:</p>
-        <p>Use the Volume slider to adjust playback. If your browser does not support speech playback, the app will fall back to the configured backend.</p>
+        <p>Use the Volume slider to adjust playback. The app will fetch the audio from the backend and play it here.</p>
       </div>
     </div>
   )
