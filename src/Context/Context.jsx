@@ -9,7 +9,7 @@ const Context = ({ children }) => {
   const [speechMode, setSpeechMode] = useState('backend')
   const [statusMessage, setStatusMessage] = useState('Ready to fetch audio from the backend')
 
-  const backendUrl = 'https://dac-50043482128.catalystappsail.in/api/convert'
+  const backendUrl = 'https://dac-50043482128.development.catalystappsail.in/api/convert'
 
   const base64ToAudioUrl = (base64String) => {
     const cleanString = base64String.startsWith('data:')
